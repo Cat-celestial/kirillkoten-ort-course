@@ -1,5 +1,93 @@
-.fa {
-    color: #ffc001;
+.mainBox {
+    width: 60vw;
+    height: 65vh;
+    margin: auto;
+    margin-top: 30px;
+    box-shadow: 4px 4px 10px 4px gray;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #f8f5f5;
 }
 
+.cont {
+    box-shadow: 0px 0px 5px rgb(165, 164, 164);
+    background-color: rgba(252, 252, 252, 0.925);
+}
 
+.manProfileBox {
+    width: 30%;
+    height: 91%;
+    margin: 19px 0 0 15px;
+    text-align: center;
+}
+
+.profPhoto {
+    width: 10vw;
+    border-radius: 90px;
+    margin-top: 24%;
+}
+
+.manName {
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.workPlace {
+    opacity: 0.75;
+}
+
+.toMessageButt {
+    border: none;
+    padding: 5px;
+    width: 60%;
+    margin-top: 15px;
+    background-color: #68c09e;
+    color: white;
+}
+
+.mainInfoBox {
+    width: 64%;
+    margin: auto;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 20px;
+}
+
+.countingBox {
+    display: flex;
+    align-items: normal;
+    text-align: center;
+    gap: 18px;
+    height: 167px;
+    margin-top: 0;
+}
+
+.contribBox {
+    display:inline-block;
+    flex: 1;
+
+}
+
+.countLabel {
+    color: #68c09e;
+    font-weight: 700;
+    font-size: 21px;
+    margin-top: 25%;
+    margin-bottom: 2%;
+}
+
+.countName {
+    opacity: .5;
+}
+
+.aboutManBox {
+    padding: 30px;
+    
+}
+
+.moreAboutLabel {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
