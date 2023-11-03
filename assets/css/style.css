@@ -3,7 +3,7 @@ body {
 }
 
 .mainBox {
-    width: 80%;
+    width: 90%;
     margin: auto;
     margin-top: 5vh;
     margin-bottom: 8vh;
@@ -11,8 +11,8 @@ body {
 }
 
 .pageNameBox {
-    padding-top: 20px;
-    padding-left: 35px;
+    padding-top: 2.5vh;
+    padding-left: 2.8vw;
     line-height: 1;
 }
 
@@ -24,36 +24,45 @@ body {
     width: 100%;
     border-bottom: 3px solid #f5f5f5;
     display: flex;
-    margin-left: 20px;
+    margin-left: 2.8vw;
+    align-content: center;
 }
 
 .pageNamesInHeader {
-    margin: 15px;
+    /* margin: 15px; */
     align-self: center;
+    padding: 0 1vw;
+}
+
+.pageNamesInHeader:first-child {
+    margin-left: 0;
 }
 
 .headerDevideLine {
     font-size: 3em;
     font-weight: 100;
     color: #d5d9db;
-    align-self: center;
+    /* align-self: center; */
 }
 
 .main {
-    margin-top: 30px;
+    margin-top: 3.2vw;
 }
 
 .fullProductListBox {
-    margin: 10px 35px;
+    margin: 2.8vw;
+    display: grid;
+    grid-template-rows: 65px 600px;
 }
 
 .clothCategoriesBox {
     display: flex;
     background-color: #2d2d2d;
+    align-items: center;
 }
 
 .clothCategoriesLabel {
-    margin: 14px 15px;
+    margin: 1.4vw 1.5vw;
     color: #a5a9ad;
 }
 
@@ -61,17 +70,28 @@ body {
     color: white;
 }
 
-.fourMenImg {
-    max-width: 100%;
-    height: auto;
+.onlyButt {
+    border: none;
+    background-color: #2d2d2d;
+    align-self: center;
+    color: white;
+    padding: 10px 15px;
+}
+
+.fourMenBox {
+    height: 100%;
+    background-image: url("/assets/images/fourmen.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .typeClothesBox {
-    margin: 25px 35px;
+    margin: 2vw 2.8vw;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 160px;
-    grid-gap: 25px;
+    grid-template-rows: 26vh;
+    grid-gap: 1.5vw;
 }
 
 .typeClothesMiniBox {
@@ -100,13 +120,13 @@ body {
     color: white;
     font-size: 1.6em;
     font-weight: 700;
-    margin-left: 15px;
+    margin-left: 1vw;
     margin-bottom: 0;
 }
 
 .typeClothesNameDescription {
     color: wheat;
-    margin-left: 15px;
+    margin-left: 1vw;
     margin-bottom: 5px;
 }
 
@@ -159,8 +179,8 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     margin-bottom: 20px;
-    margin-left: 35px;
-    margin-right: 35px;
+    margin-left: 2.8vw;
+    margin-right: 2.8vw;
 }
 
 .servTypeName {
@@ -180,8 +200,316 @@ body {
     margin-right: 10px;
 }
 
-
-
 .editorNameBox {
-    padding-left: 35px;
+    padding-left: 2.8vw;
+}
+
+/* @media (max-width: 425px) {
+    .typeClothesName {
+        font-size: 5px;
+    }
+
+    .typeClothesNameDescription {
+        font-size: 10px;
+    }
+} */
+
+@media (min-width: 375px) {
+    .pageName1 {
+        font-size: 1.1em;
+    }
+
+    .pageNamesInHeader {
+        font-size: 0.55em;
+    }
+    .typeClothesBox {
+        grid-template-rows: repeat(3, 60px);
+        grid-template-columns: 100%;
+    }
+
+    .clothCategoriesLabel {
+        font-size: 7px;
+    }
+    .prefooterCallBox {
+        height: 70px;
+    }
+
+    .typeClothesName {
+        font-size: 14px;
+    }
+
+    .typeClothesNameDescription {
+        font-size: 9px;
+    }
+
+    .fullProductListBox {
+        grid-template-rows: 25px 150px;
+    }
+
+    .servTypeName {
+        font-size: 9px;
+    }
+
+    .servCategoriesLabel,
+    .servCategoriesFirst {
+        font-size: 7px;
+    }
+
+    .footerCopyright {
+        font-size: 8px;
+    }
+
+    .callUsLabel {
+        font-size: 8px;
+    }
+
+    .workHours {
+        font-size: 6px;
+    }
+    .card-text {
+        font-size: 9px;
+    }
+
+    .priceLabel {
+        font-size: 9px;
+    }
+
+    .onlyButt {
+        padding: 5px 8px;
+        font-size: 9px;
+    }
+    .cardsBox {
+        margin: 30px 2.8vw 15px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-gap: 10px;
+    }
+}
+
+@media (min-width: 640px) {
+    .pageName1 {
+        font-size: 2em;
+    }
+    .pageNamesInHeader {
+        font-size: 0.9em;
+    }
+    .prefooterCallBox {
+        height: 150px;
+    }
+    .typeClothesBox {
+        grid-template-rows: 100px;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .clothCategoriesLabel {
+        font-size: 12px;
+    }
+
+    .typeClothesName {
+        font-size: 18px;
+    }
+
+    .typeClothesNameDescription {
+        font-size: 13px;
+    }
+
+    .fullProductListBox {
+        grid-template-rows: 40px 250px;
+    }
+
+    .servTypeName {
+        font-size: 16px;
+    }
+
+    .servCategoriesLabel,
+    .servCategoriesFirst {
+        font-size: 10px;
+    }
+
+    .footerCopyright {
+        font-size: 12px;
+    }
+
+    .callUsLabel {
+        font-size: 16px;
+    }
+
+    .workHours {
+        font-size: 12px;
+    }
+
+    .card-text {
+        font-size: 13px;
+    }
+
+    .priceLabel {
+        font-size: 13px;
+    }
+
+    .onlyButt {
+        padding: 5px 12px;
+        font-size: 14px;
+    }
+    .cardsBox {
+        margin: 30px 2.8vw 15px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-gap: 20px;
+    }
+}
+
+/* @media (min-width: 700px) {
+    .typeClothesBox {
+        grid-template-rows: 15vh;
+    }
+
+    .typeClothesName {
+        font-size: 14px;
+    }
+
+    .typeClothesNameDescription {
+        font-size: 9px;
+    }
+
+    .callUsLabel {
+        font-size: 2px;
+    }
+} */
+
+@media (min-width: 830px) {
+    .prefooterCallBox {
+        height: 200px;
+    }
+    .pageName1 {
+        font-size: 2.5em;
+    }
+
+    .pageNamesInHeader {
+        font-size: 1.15em;
+    }
+    .typeClothesBox {
+        grid-template-rows: 20vh;
+    }
+    .clothCategoriesLabel {
+        font-size: 15px;
+    }
+
+    .typeClothesName {
+        font-size: 1.5em;
+    }
+
+    .typeClothesNameDescription {
+        font-size: 1em;
+    }
+
+    .fullProductListBox {
+        grid-template-rows: 40px 380px;
+    }
+
+    .servTypeName {
+        font-size: 1.25em;
+    }
+
+    .servCategoriesLabel,
+    .servCategoriesFirst {
+        font-size: 0.9em;
+    }
+
+    .footerCopyright {
+        font-size: 1.1em;
+    }
+
+    .callUsLabel {
+        font-size: 1.4em;
+    }
+
+    .workHours {
+        font-size: 1em;
+    }
+
+    .card-text {
+        font-size: 12px;
+    }
+
+    .priceLabel {
+        font-size: 12px;
+    }
+
+    .onlyButt {
+        padding: 7px 13px;
+        font-size: 10px;
+    }
+    .cardsBox {
+        margin: 40px 2.8vw 20px;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-gap: 13px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .pageName1 {
+        font-size: 3.2em;
+    }
+    .pageNamesInHeader {
+        font-size: 1.23em;
+    }
+    .clothCategoriesLabel {
+        font-size: 18px;
+    }
+    .typeClothesBox {
+        grid-template-rows: 26vh;
+    }
+
+    .typeClothesName {
+        font-size: 2em;
+    }
+
+    .typeClothesNameDescription {
+        font-size: 1.2em;
+    }
+
+    .fullProductListBox {
+        grid-template-rows: 65px 600px;
+    }
+
+    .servTypeName {
+        font-size: 1.5em;
+    }
+
+    .servCategoriesLabel,
+    .servCategoriesFirst {
+        font-size: 1.1em;
+    }
+
+    .footerCopyright {
+        font-size: 1.3em;
+    }
+
+    .callUsLabel {
+        font-size: 1.6em;
+    }
+
+    .workHours {
+        font-size: 1.1em;
+    }
+
+    .card-text {
+        font-size: 14px;
+    }
+
+    .priceLabel {
+        font-size: 14px;
+    }
+
+    .onlyButt {
+        padding: 10px 15px;
+        font-size: 15px;
+    }
+
+    .cardsBox {
+        margin: 65px 35px 25px;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-gap: 20px;
+    }
 }
