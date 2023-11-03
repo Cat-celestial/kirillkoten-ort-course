@@ -102,17 +102,17 @@ body {
 }
 
 .typeClothesMiniBoxHB {
-    background-image: url("/assets/images/handbag.jpg") no-repeat top center;
+    background: url("/assets/images/handbag.jpg") no-repeat top center;
     background-size: 100%;
 }
 
 .typeClothesMiniBoxWCH {
-    background-image: url("/assets/images/watch.jpg") no-repeat top center;
+    background: url("/assets/images/watch.jpg") no-repeat top center;
     background-size: 100%;
 }
 
 .typeClothesMiniBoxSH {
-    background-image: url("/assets/images/shoes.jpg") no-repeat top center;
+    background: url("/assets/images/shoes.jpg") no-repeat top center;
     background-size: 100%;
 }
 
