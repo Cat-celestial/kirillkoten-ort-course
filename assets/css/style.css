@@ -80,7 +80,7 @@ body {
 
 .fourMenBox {
     height: 100%;
-    background-image: url("assets/images/fourmen.jpg");
+    background-image: url("/assets/images/fourmen.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -102,17 +102,17 @@ body {
 }
 
 .typeClothesMiniBoxHB {
-    background: url("assets/images/handbag.jpg") no-repeat top center;
+    background: url("/assets/images/handbag.jpg") no-repeat top center;
     background-size: 100%;
 }
 
 .typeClothesMiniBoxWCH {
-    background: url("assets/images/watch.jpg") no-repeat top center;
+    background: url("/assets/images/watch.jpg") no-repeat top center;
     background-size: 100%;
 }
 
 .typeClothesMiniBoxSH {
-    background: url("assets/images/shoes.jpg") no-repeat top center;
+    background: url("/assets/images/shoes.jpg") no-repeat top center;
     background-size: 100%;
 }
 
