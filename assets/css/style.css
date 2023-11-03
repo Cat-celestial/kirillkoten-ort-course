@@ -507,7 +507,7 @@ body {
     }
 
     .cardsBox {
-        margin: 65px 35px 25px;
+        margin: 65px 2.8vw 25px;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(2, 1fr);
         grid-gap: 20px;
