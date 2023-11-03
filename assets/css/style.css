@@ -284,6 +284,14 @@ body {
         grid-template-rows: repeat(4, 1fr);
         grid-gap: 10px;
     }
+
+    .servisesTypesBox {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        margin-bottom: 18px;
+        margin-left: 2.8vw;
+        margin-right: 2.8vw;
+    }
 }
 
 @media (min-width: 640px) {
@@ -354,6 +362,14 @@ body {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(4, 1fr);
         grid-gap: 20px;
+    }
+
+    .servisesTypesBox {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        margin-bottom: 15px;
+        margin-left: 2.8vw;
+        margin-right: 2.8vw;
     }
 }
 
@@ -444,6 +460,15 @@ body {
         grid-template-rows: repeat(2, 1fr);
         grid-gap: 13px;
     }
+
+    .servisesTypesBox {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+
+        margin-bottom: 18px;
+        margin-left: 2.8vw;
+        margin-right: 2.8vw;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -511,5 +536,13 @@ body {
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(2, 1fr);
         grid-gap: 20px;
+    }
+
+    .servisesTypesBox {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        margin-bottom: 20px;
+        margin-left: 2.8vw;
+        margin-right: 2.8vw;
     }
 }
