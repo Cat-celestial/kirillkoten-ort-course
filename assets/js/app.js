@@ -1,23 +1,39 @@
-let squarePerimeter = prompt("Введите сторону квадрата");
-console.log(`Периметр квадрата равен ${squarePerimeter * 4}`);
+let mass = +prompt("Enter your weight");
+let height = +prompt("Enter your height") / 100;
 
-let cubeEdge = prompt("Введите длину ребра куба");
-console.log(`Объем куба: ${cubeEdge ** 3}, площадь его боковой поверхности: ${4 * (cubeEdge ** 2)}`);
+let bmi = mass / (height ** 2);
+console.log("Ваш ИМТ: ", bmi);
 
-let circleRadius = prompt("Введите радиус окружности")
-console.log(`Длинна окружности: ${circleRadius * 2 * 3.14}, площадь круга: ${3.14 * (circleRadius ** 2)}`)
+if (bmi < 16) {
+    console.log("Выраженный дефицит массы тела");
+} else if (bmi >= 16 && bmi < 18.5) {
+    console.log("Недостаточная (дефицит) масса тела");
+} else if (bmi >= 18.5 && bmi < 25) {
+    console.log("Норма");
+} else if (bmi >= 25 && bmi < 30) {
+    console.log("Избыточная масса тела (предожирение)");
+} else if (bmi >= 30 && bmi < 35) {
+    console.log("Ожирение 1 степени");
+} else if (bmi >= 35 && bmi < 40) {
+    console.log("Ожирение 2 степени");
+} else if (bmi > 40) {
+    console.log("Ожирение 3 степени");
+};
 
-let substanceAmount = prompt("Введите объем вещества")
-let substanceMass = prompt("Введите массу вещества")
-console.log(`Плотность материала этого вещества равна ${substanceAmount * substanceMass}`)
+let year = +prompt("Enter the year to check");
 
-let habitantsAmount = prompt("Введите количество жителей")
-let areaSquare = prompt("Введите площадб территории")
-console.log(`На один км^2 обходится ${parseFloat(areaSquare / habitantsAmount)} человека`)
+if ((year / 4 == 0 && year / 100 != 0) || (year / 100 == 0 && year / 400 == 0)) {
+    console.log("Год высокосный");
+} else if (year / 100 == 0 && year / 400 != 0){
+    console.log("Год не высокосный");
+} else {
+    console.log("Год не высокосный"); 
+};
 
-let leg1 = prompt("Введите первый катет")
-let leg2 = prompt("Введите второй катет")
-console.log(`Гипотенуза данного треугольника равна ${Math.sqrt(leg1 ** 2 + leg2 ** 2)}`)
-
-let a = prompt("Введите любое значение для а")
-console.log(`y = ${(a ** 2 + 10) / (Math.sqrt(a ** 2 + 1))}`)
+// 16 и менее	Выраженный дефицит массы тела
+// 16—18,5	Недостаточная (дефицит) масса тела
+// 18,5—25	Норма
+// 25—30	Избыточная масса тела (предожирение)
+// 30—35	Ожирение 1 степени
+// 35—40	Ожирение 2 степени
+// 40 и более	Ожирение 3 степени
