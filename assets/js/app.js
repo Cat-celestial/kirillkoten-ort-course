@@ -1,5 +1,5 @@
 let mass = +prompt("Enter your weight");
-let height = +prompt("Enter your height") / 100;
+let height = +prompt("Enter your height in meaters");
 
 let bmi = mass / (height ** 2);
 console.log("Ваш ИМТ: ", bmi);
@@ -22,9 +22,9 @@ if (bmi < 16) {
 
 let year = +prompt("Enter the year to check");
 
-if ((year / 4 == 0 && year / 100 != 0) || (year / 100 == 0 && year / 400 == 0)) {
+if ((year % 4 == 0 && year % 100 != 0) || (year % 100 == 0 && year % 400 == 0)) {
     console.log("Год высокосный");
-} else if (year / 100 == 0 && year / 400 != 0){
+} else if (year % 100 == 0 && year % 400 != 0){
     console.log("Год не высокосный");
 } else {
     console.log("Год не высокосный"); 
