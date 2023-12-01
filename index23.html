@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style23.css">
+</head>
+
+<body>
+    <div class="mainBox">
+        <p class="subTitle">Угадай число от 1 до 100</p>
+        <p class="attemptLab">Осталось попыток: &nbsp;<span class="attemptCount">10</span></p>
+
+        <img src="assets/images/whatImg.png">
+
+        <div class="choiseBox">
+            <p class="yourChoiseLab">Ваш выбор: </p>
+            <input type="text" class="numberChoise">
+            <button onclick="checkFunc()" class="checkButt">Проверить число</button>
+        </div>
+
+        <p class="resultInfo">Ваш вариант &nbsp;<span class="resultNumLab">--</span> </p>
+
+    </div>
+    <!-- let mainArr = _.shuffle(_.range(3,40)).slice(0,10); -->
+    <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+    <script src="assets/js/app23.js"></script>
+</body>
+
+</html>

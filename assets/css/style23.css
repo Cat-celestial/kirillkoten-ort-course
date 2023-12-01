@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&display=swap");
+
+body {
+    margin: 0;
+}
+
+.mainBox {
+    width: fit-content;
+    margin: 120px auto;
+}
+
+p,
+button,
+input {
+    font-family: "Arimo", sans-serif;
+}
+
+.subTitle {
+    font-size: 35px;
+    /* margin-bottom: 0; */
+    width: fit-content;
+    display: block;
+    margin: 10px auto 0;
+}
+
+.attemptCount {
+    font-size: 25px;
+}
+.attemptLab {
+    width: fit-content;
+    display: block;
+    margin: 10px auto 40px;
+    font-size: 20px;
+}
+
+img {
+    width: 45%;
+    display: block;
+    margin: 0 auto 35px;
+}
+
+.yourChoiseLab {
+    display: inline-block;
+    font-size: 19px;
+}
+
+.numberChoise {
+    margin: 0 30px;
+    padding: 7px 10px;
+    font-size: 15px;
+}
+
+.checkButt {
+    border: none;
+    padding: 7px 20px;
+    font-size: 16px;
+    background-color: rgb(75, 76, 77);
+    color: white;
+}
+
+.checkButt:hover {
+    background-color: rgba(87, 88, 88, 0.664);
+}
+
+.checkButt:active {
+    background-color: rgb(75, 76, 77);
+}
+
+.resultInfo {
+    font-size: 21px;
+    margin-top: 30px;
+}
