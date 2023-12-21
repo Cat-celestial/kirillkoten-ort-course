@@ -10,7 +10,7 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
-.inp {
+.inp, .hrnInp {
     font-size: 18px;
     padding: 5px 8px;
 }

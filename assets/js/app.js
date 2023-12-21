@@ -15,7 +15,7 @@ let numbers = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "E
 
 
 function decodeFunc() {
-    
+
     let decodeLab = document.querySelector(".decoding");
     let inpValue = inp.value;
     decodeLab.textContent = "Разшифровка: ";
@@ -25,9 +25,61 @@ function decodeFunc() {
 
         if (inNum) {
             decodeLab.textContent += numbers[inpValue[item]] + " ";
-        } else if (inNum == false){
-            
+        } else if (inNum == false) {
             decodeLab.textContent += letters[inpValue[item]] + " ";
         }
     }
+}
+
+// ВТОРАЯ ЗАДАЧА
+
+let sumInNums = document.querySelector(".hrnInp");
+let translationLab = document.querySelector(".translation");
+
+let dozensList = ["", "одинадцать", "двенадцать", "тринадцать", "четырнадцать",
+    "пятнадцать", "шестнадцать", "семьнадцать", "восемьнадцать", "девятнадцать"]
+
+let numbsObjList = [
+    ["", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"],
+
+    ["", "десять", "двадцать", "тридцать", "сорок", "пятдесят", "шестьдесят", "семьдесят",
+        "восемьдесят", "девяносто"],
+
+    ["", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот",
+        "восемьсот", "девятсот"]];
+
+let bigNumsList = [
+    { 1: "тысяча", 234: "тысячи", 56789: "тысяч" },
+    { 1: "миллион", 234: "миллиона", 56789: "миллионов" },
+    { 1: "миллиард", 234: "миллиарда", 56789: "миллиардов" }];
+
+
+function translateFunc() {
+    let sum = sumInNums.value.split("").reverse().join("");
+    let zhats = 0;
+    let wordsList = [];
+    translationLab.textContent = "Сума словами: ";
+
+    for (let i = 0; i < sum.length; i++) {
+
+        // Проверка на десятки
+        let ifDozens = parseInt(sumInNums.value.slice(-2));
+        if (ifDozens > 10 && ifDozens < 20) {
+            let dozMas = Array.from(String(ifDozens))
+            zhats = dozensList[parseInt(dozMas[1])];
+        }
+
+        wordsList.push(numbsObjList[i][sum[i]]);
+        if (i > 3) {
+            // let needBigNum = bigNumsList[sum.length /];
+        }
+    }
+
+    // Конечная проверка на десятки
+    if (zhats != 0) {
+        wordsList.shift();
+        wordsList.shift();
+        wordsList.unshift(zhats);
+    }
+    translationLab.textContent += wordsList.reverse().join(" ");
 }
