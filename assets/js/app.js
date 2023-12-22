@@ -91,4 +91,11 @@ function translateFunc() {
         wordsList.unshift(zhats);
     }
     translationLab.textContent += wordsList.reverse().join(" ");
+    if (parseInt(sum[0]) == 1 && parseInt(sum[1]) != 1) {
+        translationLab.textContent += " гривна";
+    } else if (parseInt(sum[0]) >= 2 && parseInt(sum[0]) >= 4 && parseInt(sum[1]) != 1) {
+        translationLab.textContent += " гривны";
+    } else if ((parseInt(String(sum[1]) + String(sum[0])) >= 10 || parseInt(String(sum[1]) + String(sum[0])) <= 19) || (parseInt(sum[0]) >= 5 || parseInt(sum[0]) <=9)) {
+        translationLab.textContent += " гривен";
+    }
 }
