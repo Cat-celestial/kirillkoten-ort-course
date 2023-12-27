@@ -1,101 +1,18 @@
-let inp = document.querySelector(".inp");
-inp.focus();
+let creditSum = +prompt("Введите суму кредита");
+// let creditSumInUse = creditSum;
+let annualRate = +prompt("Введите годовой процент");
+let monthLoanTerm = +prompt("Введите срок кредита в месяцах");
+let monthPaym = (creditSum / monthLoanTerm).toFixed(2);
 
-let letters = {
-    a: "Alfa", b: "Bravo", c: "Charlie", d: "Delta", e: "Echo",
-    f: "Foxtrot", g: "Golf", h: "Hotel", i: "India", j: "Juliett",
-    k: "Kilo", l: "Lima", m: "Mike", n: "November", o: "Oscar",
-    p: "Papa", q: "Quebec", r: "Romeo", s: "Sierra", t: "Tango",
-    u: "Unoform", v: "Victor", w: "Whiskey", x: "X - ray", y: "Yankee",
-    z: "Zulu"
+let overPaym = 0;
+
+for (let i = 0; i < monthLoanTerm; i++) {
+    let paymLeft = creditSum - i * monthPaym;
+    // creditSumInUse = paymLeft;
+
+    let ratePaym = paymLeft * (annualRate / 12 / 100);
+    overPaym += ratePaym;
+    console.log(`Задолженность по кредиту: ${(paymLeft).toFixed(2)}, Погашение кредита: ${monthPaym}, Проценты по кредиту: ${(ratePaym).toFixed(2)}, Общая выплата в месяц: ${(paymLeft + ratePaym).toFixed(2)}`);
 }
 
-
-let numbers = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Niner"];
-
-
-function decodeFunc() {
-
-    let decodeLab = document.querySelector(".decoding");
-    let inpValue = inp.value;
-    decodeLab.textContent = "Разшифровка: ";
-
-    for (let item = 0; item <= inpValue.length - 1; item++) {
-        let inNum = !isNaN(inpValue[item]);
-
-        if (inNum) {
-            decodeLab.textContent += numbers[inpValue[item]] + " ";
-        } else if (inNum == false) {
-            decodeLab.textContent += letters[inpValue[item]] + " ";
-        }
-    }
-}
-
-// ВТОРАЯ ЗАДАЧА
-
-let sumInNums = document.querySelector(".hrnInp");
-let translationLab = document.querySelector(".translation");
-
-let dozensList = ["", "одинадцать", "двенадцать", "тринадцать", "четырнадцать",
-    "пятнадцать", "шестнадцать", "семьнадцать", "восемьнадцать", "девятнадцать"]
-
-let numbsObjList = [
-    ["", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"],
-
-    ["", "десять", "двадцать", "тридцать", "сорок", "пятдесят", "шестьдесят", "семьдесят",
-        "восемьдесят", "девяносто"],
-
-    ["", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот",
-        "восемьсот", "девятсот"], ["", "одна", "две", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"], ["", "десять", "двадцать", "тридцать", "сорок", "пятдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"], ["", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятсот"], ["", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"], ["", "десять", "двадцать", "тридцать", "сорок", "пятдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"], ["", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятсот"]];
-
-let bigNumsList = ["", "",
-    { "1": "тысяча", "234": "тысячи", "5678910 11 12 13 14 15 16 17 18 19": "тысяч" },
-    { "1": "миллион", "234": "миллиона", "5678910 11 12 13 14 15 16 17 18 19": "миллионов" },
-    { "1": "миллиард", "234": "миллиарда", "5678910 11 12 13 14 15 16 17 18 19": "миллиардов" }];
-
-
-function translateFunc() {
-    let sum = sumInNums.value.split("").reverse().join("");
-    let zhats = 0;
-    let wordsList = [];
-    translationLab.textContent = "Сума словами: ";
-
-    for (let i = 0; i < sum.length; i++) {
-
-        // Проверка на десятки
-        let ifDozens = parseInt(sumInNums.value.slice(-2));
-        if (ifDozens > 10 && ifDozens < 20) {
-            let dozMas = Array.from(String(ifDozens))
-            zhats = dozensList[parseInt(dozMas[1])];
-        }
-
-        if (i == 3 || i == 6 || i == 9) {
-            // Добавление приставки тысяч и т.д
-            let whatBigNum = bigNumsList[Math.ceil(sum.length / 3)];
-            let bigNumKeys = Object.keys(whatBigNum);
-
-            for (let j of bigNumKeys) {
-                if (j.indexOf(String(sum[i])) != -1) {
-                    wordsList.push(whatBigNum[parseInt(j)]);
-                }
-            }
-        }
-
-        wordsList.push(numbsObjList[i][sum[i]]);
-    }
-
-    // Конечная проверка на десятки
-    if (zhats != 0) {
-        wordsList.shift();
-        wordsList.shift();
-        wordsList.unshift(zhats);
-    }
-    translationLab.textContent += wordsList.reverse().join(" ");
-    if (parseInt(sum[0]) == 1 && parseInt(sum[1]) != 1) {
-        translationLab.textContent += " гривна";
-    } else if (parseInt(sum[0]) >= 2 && parseInt(sum[0]) <= 4 && parseInt(sum[1]) != 1) {
-        translationLab.textContent += " гривны";
-    } else if ((parseInt(String(sum[1]) + String(sum[0])) >= 10 || parseInt(String(sum[1]) + String(sum[0])) <= 19) || (parseInt(sum[0]) >= 5 || parseInt(sum[0]) <=9)) {
-        translationLab.textContent += " гривен";
-    }
-}
+console.log("Переплата по кредиту: ", (overPaym).toFixed(2));
