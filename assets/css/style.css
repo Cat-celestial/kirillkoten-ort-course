@@ -23,11 +23,19 @@ body {
 }
 
 .rateLab {
-    
+
 }
 
 .currName {
     
+}
+
+.flagsBox {
+    margin: 4px 10px;
+    border: 1px solid green;
+    display: inline;
+    width: fit-content;
+    height: fit-content;
 }
 
 .currLab {
