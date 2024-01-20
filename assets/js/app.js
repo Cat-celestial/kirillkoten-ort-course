@@ -8,26 +8,29 @@ document.querySelector(".titleLab").textContent += currensObj[0].exchangedate;
 console.log(countriesObj);
 console.log(currensObj);
 
+
+
 let flagsObj = {};
-// flagsObj["Ukraine"] = Object.keys(countriesObj[0].currencies);
-// flagsObj["Rasha"] = Object.keys(countriesObj[1].currencies);
-// console.log(flagsObj)
 
 for (let crns in currensObj) {
     let countNeedList = [];
 
     for (let country in countriesObj) {
-        console.log(parseInt(country));
+        let counrtyCurrKeys = Object.keys(countriesObj[country]);
 
-        let counrtyCurrKeys = Object.keys(countriesObj[parseInt(country)]);
 
-        if (counrtyCurrKeys?.currencies) {
-            let thisCountryCurrs = Object.keys(countriesObj[parseInt(country)].currencies);
-            countNeedList.push(thisCountryCurrs);   
+        if (counrtyCurrKeys.includes("currencies")) {
+            // console.log(countriesObj[country].flags.png);
+
+            let thisCountryCurrs = Object.keys(countriesObj[country].currencies);
+            if (thisCountryCurrs.includes(currensObj[crns].cc) == true) {
+                countNeedList.push(countriesObj[country].flags.png);
+                // console.log(countriesObj[country].flags.png);
+            }
         }
     }
 
-    flagsObj[crns.cc] = countNeedList;
+    flagsObj[currensObj[crns].cc] = countNeedList;
 }
 
 console.log(flagsObj);
@@ -41,11 +44,28 @@ for (let curr in currensObj) {
         <h2 class="textSimp currName">${currensObj[curr].txt} (${currensObj[curr].cc})</h2>
         <h3 class="textSimp rateLab" >Курс: </h3>
         <h3 class="textSimp currLab"> ${currensObj[curr].rate.toFixed(2)}грн</h3>
-        <div class="flagsBox"></div>
+        <div class="flagsBox">
+
+        </div>
     </div>
     `;
 
     mBoxTag.appendChild(newCurrBox);
+
+    let currFlags = flagsObj[currensObj[curr].cc];
+    let flagTags = document.querySelectorAll(".flagsBox")[curr];
+    console.log(flagTags);
+
+    for (let flag of currFlags) {
+        let newFlagTag = document.createElement("img");
+        newFlagTag.setAttribute("src", flag);
+
+        newFlagTag.setAttribute("width", "100px");
+        newFlagTag.style.margin = "7px";
+        newFlagTag.style.border = "2px solid gray";
+
+        flagTags.appendChild(newFlagTag);
+    }
 }
 
 

@@ -19,21 +19,22 @@ body {
     margin-left: 15px;
     margin-top: 15px;
     margin-bottom: 15px;
-    display: inline-block;
 }
 
 .rateLab {
-
+    display: inline-block;
+    
 }
 
 .currName {
+    display: inline-block;
     
 }
 
 .flagsBox {
     margin: 4px 10px;
-    border: 1px solid green;
-    display: inline;
+    /* border: 1px solid green; */
+    /* display: inline; */
     width: fit-content;
     height: fit-content;
 }
@@ -41,4 +42,5 @@ body {
 .currLab {
     font-size: 25px;
     margin-left: 5px;
+    display: inline-block;
 }
