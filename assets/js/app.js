@@ -1,82 +1,45 @@
-const urlCounts = await fetch('https://restcountries.com/v3.1/all');
-const urlCurr = await fetch("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json");
-const countriesObj = await urlCounts.json();
-const currensObj = await urlCurr.json();
+let data = `Pellentesque ex eros, +380665433321 porttitor eu bibendum ac, aliquam tincidunt urna. 
+Mauris tristique lobortis orci, nec varius magna convallis interdum. Etiam 5363 4567 8765 3454 
+pharetra tempor ex, vel eleifend (067) 678 44 21 odio lacinia (0562) 35-30-38 eget. Morbi maximus 
+libero vitae aliquet facilisis. Vivamus 5674-2346-8945-0012 vitae quam nisi. Quisque 12/45 quis 
+venenatis 5192722517688913 lacus. Sed ac lorem (050)567-45-33 nec leo pharetra 4556796335044346 
+dapibus sed eu +38067432112 ex. In hac 4913-8185-2881-4543  habitasse platea dictumst. In dignissim 
+5461158320267908 suscipit rutrum. Ut 4916 8494 1754 2904 luctus  sapien in risus 56th street auctor, 
+ac placerat 067-678-44-21  quam malesuada. Pellentesque (056) 7783322 bibendum justo  5363 4567 87653 3455 
+tempus purus convallis, a viverra nunc ullamcorper. Nulla 5213 9203 2475 5355 eget lectus gravida, porta 
+eros vitae, semper erat +39-926-1234567.  Aenean volutpat vehicula dui ut pharetra.`;
 
-document.querySelector(".titleLab").textContent += currensObj[0].exchangedate;
+let checker1 = /[0-9]{16}|[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}|[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}/g;
+let allCardsBegin = data.match(checker1);
+let allCards = [];
+let allGappedCards = []
 
-console.log(countriesObj);
-console.log(currensObj);
+for (let card of allCardsBegin) {
+    let updatedCard = "";
 
-
-
-let flagsObj = {};
-
-for (let crns in currensObj) {
-    let countNeedList = [];
-
-    for (let country in countriesObj) {
-        let counrtyCurrKeys = Object.keys(countriesObj[country]);
-
-
-        if (counrtyCurrKeys.includes("currencies")) {
-            // console.log(countriesObj[country].flags.png);
-
-            let thisCountryCurrs = Object.keys(countriesObj[country].currencies);
-            if (thisCountryCurrs.includes(currensObj[crns].cc) == true) {
-                countNeedList.push(countriesObj[country].flags.png);
-                // console.log(countriesObj[country].flags.png);
-            }
+    for (let el of card) {
+        if (Number.isInteger(parseInt(el))) {
+            updatedCard += el;
         }
     }
 
-    flagsObj[currensObj[crns].cc] = countNeedList;
+    allCards.push(updatedCard);
+    allGappedCards.push(updatedCard.replace(/(\d{4})/g, '$1 ').trim());
 }
 
-console.log(flagsObj);
+console.log(allCards);
+console.log(allGappedCards);
 
-for (let curr in currensObj) {
-    let mBoxTag = document.querySelector(".mainBox");
-    let newCurrBox = document.createElement("div");
+console.log("Валидные карты: ");
 
-    newCurrBox.innerHTML = `
-    <div class="currBox">
-        <h2 class="textSimp currName">${currensObj[curr].txt} (${currensObj[curr].cc})</h2>
-        <h3 class="textSimp rateLab" >Курс: </h3>
-        <h3 class="textSimp currLab"> ${currensObj[curr].rate.toFixed(2)}грн</h3>
-        <div class="flagsBox">
+for (let cd in allCards) {
 
-        </div>
-    </div>
-    `;
-
-    mBoxTag.appendChild(newCurrBox);
-
-    let currFlags = flagsObj[currensObj[curr].cc];
-    let flagTags = document.querySelectorAll(".flagsBox")[curr];
-    console.log(flagTags);
-
-    for (let flag of currFlags) {
-        let newFlagTag = document.createElement("img");
-        newFlagTag.setAttribute("src", flag);
-
-        newFlagTag.setAttribute("width", "100px");
-        newFlagTag.style.margin = "7px";
-        newFlagTag.style.border = "2px solid gray";
-
-        flagTags.appendChild(newFlagTag);
-    }
-}
-
-
-let allCurrLabs = document.querySelectorAll(".currName");
-
-for (let item in allCurrLabs) {
-    if (item == 29) {
-        allCurrLabs[item].style.marginRight = `5px`;
-    } else {
-        let eachMarg = 380 - parseInt(allCurrLabs[item].offsetWidth);
-        allCurrLabs[item].style.marginRight = `${eachMarg}px`;
+    let url = await fetch(`https://api.bincodes.com/cc/json/8b40b3604d5de120d6c11f726cb835a6/${allCards[cd]}/`);
+    let jsonCard = await url.json();
+    if (jsonCard.valid == "true") {
+        console.log(`Карта ${allGappedCards[cd]} валидная`);
     }
 
 }
+
+
