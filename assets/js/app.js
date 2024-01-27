@@ -33,13 +33,22 @@ console.log(allGappedCards);
 console.log("Валидные карты: ");
 
 for (let cd in allCards) {
+    let card = allCards[cd].split("").map(item => +item).reverse();
+    // console.log(card, typeof(card));
+    let sum = 0;
 
-    let url = await fetch(`https://api.bincodes.com/cc/json/8b40b3604d5de120d6c11f726cb835a6/${allCards[cd]}/`);
-    let jsonCard = await url.json();
-    if (jsonCard.valid == "true") {
-        console.log(`Карта ${allGappedCards[cd]} валидная`);
+    for (let i = 0; i < card.length; i++) {
+        if (i % 2 == 0) {
+            sum += card[i];
+        } else {
+            let num = card[i] * 2;
+            sum = sum + (num > 9 ? num - 9 : num);
+        }
+    }
+    if (sum % 10 === 0) {
+        console.log(allGappedCards[cd]);
     }
 
-}
 
+}
 
