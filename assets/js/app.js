@@ -1,136 +1,125 @@
-import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+import { createApp, ref, watch } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 
+let months = ["Января", "Февраля", "Марта", "Апреля", "Мая",
+    "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
 
-let fetchedSite = await fetch("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json");
-let jsonFile = await fetchedSite.json();
-jsonFile[61] = { "cc": "UAH", "exchangedate": jsonFile[0].exchangedate, "rate": 1, "txt": "Українська гривня" }
+let daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Субота"];
 
-let selectTag = document.querySelector("#selectTag");
-let toExchLabs = document.getElementsByClassName("toUAHLab");
-// console.log(toExchLabs);
+const signsList = [
+    "Козерог",
+    "Водолій",
+    "Риби",
+    "Овен",
+    "Телець",
+    "Близнюки",
+    "Рак",
+    "Лев",
+    "Діва",
+    "Терези",
+    "Ваги",
+    "Скорпіон",
+    "Стрілець"
+];
 
-let app = {
-    data: jsonFile,
-    toCurr: "UAH",
-    loadData() {
-        this.clearToCurrLubs();
-        this.render();
-    },
-    render() {
-        // console.log(this.data);
+const datesList = [
+    [22, 12], [20, 1], [19, 2], [21, 3],
+    [20, 4], [21, 5], [21, 6], [23, 7],
+    [23, 8], [23, 9], [23, 10], [22, 11]
+];
 
-        let allProdBoxes = document.querySelectorAll('#phones_ul li');
-        let allCurrSpans = document.getElementsByClassName("badge bg-primary badge-pill");
-        // console.log(allCurrSpans);
-        // console.log(allProdBoxes);
+const zodiacAnimals = ['Мавпа', 'Півень', 'Собака', 'Свиня', 'Щур', 'Бик', 'Тигр', 'Кролик', 'Дракон', 'Змія', 'Кінь', 'Коза'];
 
-        for (let box in allCurrSpans) {
-            let intBox = parseInt(box);
+createApp({
+    setup() {
+        const inputVal = ref("");
 
-            if ("012345678".includes(box)) {
-                this.data.filter(item => item.cc.includes(allCurrSpans[intBox].outerText.slice(0, 3))).map((curr, index) => {
-                    let priceMatch = allCurrSpans[intBox].outerText.match(/\d+/g);
-                    let needCurRateUAH = parseInt(priceMatch[priceMatch.length - 1], 10) * curr.rate;
-                    let rightCurr = "UAH";
+        watch(inputVal, async () => {
+            innCorrectLab.textContent = "ИНН коректен?";
+            birthDayLab.textContent = "Дата рождения: ";
+            genderLab.textContent = "Пол: ";
+            zodiacSingLab.textContent = "Знак зодиака: ";
 
-                    if (this.toCurr != "UAH") {
-                        for (let needCur of this.data) {
-                            if (needCur.cc == this.toCurr) {
-                                needCurRateUAH = parseInt(priceMatch[priceMatch.length - 1], 10) * curr.rate / needCur.rate;
-                                rightCurr = needCur.cc;
-                            }
+            let userINN = String(inputVal.value);
+
+            if (userINN.length == 10) {
+                let innList = userINN.split("").map((item) => +item).reverse();
+
+                let checkSum = userINN[0] * -1 + userINN[1] * 5 + userINN[2] * 7 + userINN[3] * 9 + userINN[4] * 4 + userINN[5] * 6 + userINN[6] * 10 + userINN[7] * 5 + userINN[8] * 7;
+                let checkNum = checkSum % 11;
+                checkNum = (checkNum >= 10) ? checkNum % 10 : checkNum;
+
+                if (checkNum == innList[0]) {
+                    innCorrectLab.innerHTML = `ИНН <span class="green">корректен</span>`;
+
+                    let gender = (num) => (num % 2 === 0) ? "Пол: женский" : "Пол: мужской";
+                    genderLab.textContent = gender(innList[1]);
+
+                    let birthDays = parseInt(userINN.substring(0, 5));
+                    let dt = new Date("1899-12-31");
+                    dt.setDate(dt.getDate() + birthDays);
+
+                    birthDayLab.textContent = `Дата рождения: ${dt.getDate()} ${months[dt.getMonth()]} ${dt.getFullYear()}, ${daysOfWeek[dt.getDay()]}`;
+
+                    const zodiacIndex = (dt.getFullYear() - 1924) % 12;
+                    const zodiacAnimal = zodiacAnimals[zodiacIndex];
+
+                    for (let i = 0; i < datesList.length; i++) {
+                        if ((dt.getDate() >= datesList[i][0] && dt.getMonth() === datesList[i][1]) || (dt.getMonth() === datesList[i][1] && i === 11 && dt.getDate() < 22)) {
+                            zodiacSingLab.textContent = `Знак зодиака: ${signsList[i]}, символ года: ${zodiacAnimal}`
                         }
                     }
-
-                    toExchLabs[intBox].outerHTML = `
-                        <span class="badge bg-primary toUAHLab">${rightCurr} ${(needCurRateUAH).toFixed(2)}</span>
-                    `;
-                });
-
+                } else {
+                    innCorrectLab.innerHTML = `ИНН <span class="red">НЕ</span> корректен`;
+                }
             }
-        }
 
-    },
 
-    changeToWhatCurr(opinVal) {
-        this.toCurr = opinVal.match(/\(([^)]+)\)/)[1].trim();
-        this.loadData();
-    },
-
-    clearToCurrLubs() {
-        let elementsToRemove = document.querySelectorAll('.toUAHLab');
-
-        elementsToRemove.forEach(function (element) {
-            element.innerHTML = "";
-        });
-    },
-    appendSelect() {
-        let allCurArray = [];
-
-        for (let curr of this.data) {
-            allCurArray.push(`${curr.txt} (${curr.cc})`);
-        }
-        allCurArray.sort(function (a, b) {
-            return a.localeCompare(b, 'uk-UA');
         });
 
-        for (let curr of allCurArray) {
-            let newCurrName = document.createElement("option");
-            newCurrName.innerHTML = `
-                <option id="${curr.match(/\(([^)]+)\)/)[1].trim()}">${curr}</option>
-            `;
-            selectTag.appendChild(newCurrName);
-
+        return {
+            inputVal,
         }
-    },
-
-    sortOptions() {
     }
-}
-app.loadData();
-app.appendSelect();
-
-selectTag.addEventListener("change", () => {
-    app.changeToWhatCurr(selectTag.value);
-
-})
+}).mount("#app");
 
 
+// function mainFunc() {
+//     let innStr = String(mainInp.value);
+//     let innList = mainInp.value.split("").map((item) => +item).reverse();
 
+//     let checkSum = innStr[0] * -1 + innStr[1] * 5 + innStr[2] * 7 + innStr[3] * 9 + innStr[4] * 4 + innStr[5] * 6 + innStr[6] * 10 + innStr[7] * 5 + innStr[8] * 7;
+//     let checkNum = checkSum % 11;
+//     // console.log(checkNum);
 
+//     checkNum = (checkNum >= 10) ? checkNum % 10 : checkNum;
+//     // parseInt(checkNum);
+//     // console.log(checkNum);
 
+//     if (innList.length == 10 && checkNum == innList[0]) {
+//         innValidityLab.innerHTML = `ИНН <span class="green">корректен</span>`;
 
-// this.data.filter(item => item.cc.includes(allCurrSpans[box].outerText.slice(0, 3))).map((curr, index) => {
+//         let gender = (num) => (num % 2 === 0) ? "Пол: женский" : "Пол: мужской";
+//         genderLab.textContent = gender(innList[1]);
 
-//     // let newTag = document.createElement("span");
+//         let birthDays = parseInt(innStr.substring(0, 5));
+//         let dt = new Date("1899-12-31");
+//         dt.setDate(dt.getDate() + birthDays);
 
-//     if (this.toCurr != "UAH") {
-//         let priceMatch = allCurrSpans[box].outerText.match(/\d+/g);
-//         let needCurRateUAH;
-//         let rightCurr;
+//         birthDayLab.textContent = `Дата рождения: ${dt.getDate()} ${months[dt.getMonth()]} ${dt.getFullYear()}, ${daysOfWeek[dt.getDay()]}`;
+//         // console.log(dt.getDay());
 
-//         for (let needCur of this.data) {
-//             if (needCur.cc == this.toCurr) {
-//                 needCurRateUAH = parseInt(priceMatch[priceMatch.length - 1], 10) * curr.rate / needCur.rate;
-//                 rightCurr = needCur.cc;
-//             }
-//         }
+//         let fullBirthDate = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
+//         let nowadays = new Date();
+//         // let nowadays = new Date(nowadaysString.getFullYear(), nowadaysString.getMonth(), nowadaysString.getDate());
 
-//         this.toExchLabs[index].innerHTML = `
-//             <span class="badge bg-primary toUAHLab">${rightCurr} ${(needCurRateUAH).toFixed(2)}</span>
-//         `;
+//         let yearOld = Math.floor(Math.ceil(Math.abs(nowadays.getTime() - fullBirthDate.getTime()) / (1000 * 3600 * 24)) / 365);
 
-//         // newTag.style.width = "100px";
-//         // allProdBoxes[box].appendChild(newTag);
-
-//     } else if (this.toCurr == "UAH") {
-//         let priceMatch = allCurrSpans[box].outerText.match(/\d+/g);
-//         newTag.innerHTML = `
-//             <span class="badge bg-primary toUAHLab">UAH ${(parseInt(priceMatch[priceMatch.length - 1], 10) * curr.rate).toFixed(2)}</span>
-//         `;
-//         newTag.style.width = "100px";
-//         allProdBoxes[box].appendChild(newTag);
-
+//         yearsLab.textContent = `Полных лет человеку: ${yearOld}`;
+//     } else {
+//         innValidityLab.innerHTML = `ИНН <span class="red">НЕ</span> корректен`;
+//         birthDayLab.textContent = "Дата рождения: ";
+//         genderLab.textContent = "Пол: ";
+//         yearsLab.textContent = "Полных лет человеку: ";
 //     }
 
-// });
+// }

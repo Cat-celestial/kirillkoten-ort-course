@@ -1,50 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap");
+
 body {
     margin: 0;
 }
 
 .mainBox {
     width: 90%;
-    margin: auto;
-    margin-top: 80px;
-    border: 2px solid rgba(128, 128, 128, 0.089);
-    padding: 15px;
+    margin: 50px auto;
 }
 
-.currBox {
-    margin: 20px;
-    border: 2px solid rgba(0, 0, 0, 0.459);
+input {
+    width: 40%;
+    padding: 4px;
 }
 
-.textSimp {
-    margin-left: 15px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+.red {
+    color: rgba(255, 0, 0, 0.7);
 }
 
-.rateLab {
-    display: inline-block;
-    
-}
-
-.currName {
-    display: inline-block;
-    
-}
-
-.flagsBox {
-    margin: 4px 10px;
-    /* border: 1px solid green; */
-    /* display: inline; */
-    width: fit-content;
-    height: fit-content;
-}
-
-.currLab {
-    font-size: 25px;
-    margin-left: 5px;
-    display: inline-block;
-}
-
-.toUAHLab {
-    width: 100px;
+.green {
+    color: rgba(0, 128, 0, 0.64);
 }
