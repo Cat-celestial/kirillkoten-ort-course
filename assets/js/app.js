@@ -4,29 +4,6 @@ let months = ["Января", "Февраля", "Марта", "Апреля", "�
     "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
 
 let daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Субота"];
-
-const signsList = [
-    "Козерог",
-    "Водолій",
-    "Риби",
-    "Овен",
-    "Телець",
-    "Близнюки",
-    "Рак",
-    "Лев",
-    "Діва",
-    "Терези",
-    "Ваги",
-    "Скорпіон",
-    "Стрілець"
-];
-
-const datesList = [
-    [22, 12], [20, 1], [19, 2], [21, 3],
-    [20, 4], [21, 5], [21, 6], [23, 7],
-    [23, 8], [23, 9], [23, 10], [22, 11]
-];
-
 const zodiacAnimals = ['Мавпа', 'Півень', 'Собака', 'Свиня', 'Щур', 'Бик', 'Тигр', 'Кролик', 'Дракон', 'Змія', 'Кінь', 'Коза'];
 
 createApp({
@@ -60,14 +37,88 @@ createApp({
 
                     birthDayLab.textContent = `Дата рождения: ${dt.getDate()} ${months[dt.getMonth()]} ${dt.getFullYear()}, ${daysOfWeek[dt.getDay()]}`;
 
-                    const zodiacIndex = (dt.getFullYear() - 1924) % 12;
-                    const zodiacAnimal = zodiacAnimals[zodiacIndex];
+                    let mMain = parseInt(dt.getMonth()) + 1;
+                    let dayMain = parseInt(dt.getDate());
 
-                    for (let i = 0; i < datesList.length; i++) {
-                        if ((dt.getDate() >= datesList[i][0] && dt.getMonth() === datesList[i][1]) || (dt.getMonth() === datesList[i][1] && i === 11 && dt.getDate() < 22)) {
-                            zodiacSingLab.textContent = `Знак зодиака: ${signsList[i]}, символ года: ${zodiacAnimal}`
-                        }
+                    let znak = "";
+                    switch (mMain) {
+                        case 1:
+                            if (dayMain <= 19)
+                                znak = 'Козерог';
+                            else
+                                znak = 'Водолей';
+                            break;
+                        case 2:
+                            if (dayMain <= 18)
+                                znak = 'Водолей';
+                            else
+                                znak = 'Рыбы';
+                            break;
+                        case 3:
+                            if (dayMain <= 20)
+                                znak = 'Рыбы';
+                            else
+                                znak = 'Овен';
+                            break;
+                        case 4:
+                            if (dayMain <= 19)
+                                znak = 'Овен';
+                            else
+                                znak = 'Телец';
+                            break;
+                        case 5:
+                            if (dayMain <= 20)
+                                znak = 'Телец';
+                            else
+                                znak = 'Близнецы';
+                            break;
+                        case 6:
+                            if (dayMain <= 21)
+                                znak = 'Близнецы';
+                            else
+                                znak = 'Рак';
+                            break;
+                        case 7:
+                            if (dayMain <= 22)
+                                znak = 'Рак';
+                            else
+                                znak = 'Лев';
+                            break;
+                        case 8:
+                            if (dayMain <= 22)
+                                znak = 'Лев';
+                            else
+                                znak = 'Дева';
+                            break;
+                        case 9:
+                            if (dayMain <= 22)
+                                znak = 'Дева';
+                            else
+                                znak = 'Весы';
+                            break;
+                        case 10:
+                            if (dayMain <= 22)
+                                znak = 'Весы';
+                            else
+                                znak = 'Скорпион';
+                            break;
+                        case 11:
+                            if (dayMain <= 22)
+                                znak = 'Скорпион';
+                            else
+                                znak = 'Стрелец';
+                            break;
+                        case 12:
+                            if (dayMain <= 21)
+                                znak = 'Стрелец';
+                            else
+                                znak = 'Козерог';
+                            break;
                     }
+
+                    const zodiacIndex = (parseInt(dt.getFullYear()) - 1924) % 12;
+
+                    zodiacSingLab.textContent = `Знак зодиака: ${znak}, Символ года: ${zodiacAnimals[zodiacIndex]}`;
                 } else {
                     innCorrectLab.innerHTML = `ИНН <span class="red">НЕ</span> корректен`;
                 }
